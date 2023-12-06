@@ -27,7 +27,7 @@ pip install perfograph
 
 
 ## Installation
-`pip install –e git+https://github.com/tehranixyz/perfograph`
+`pip install git+https://github.com/tehranixyz/perfograph`
 
 ## Use Cases
 - Program Analysis
