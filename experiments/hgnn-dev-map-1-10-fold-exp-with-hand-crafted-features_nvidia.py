@@ -55,75 +55,73 @@ class HeteroClassifier(nn.Module):
 
 whole_exp = 0
 
-for whole_exp in range(10):
+num_examples = len(dataset)
 
-    num_examples = len(dataset)
+# new added
+dataset_indices = list(range(num_examples))
+np.random.shuffle(dataset_indices)
+test_split_index = 67
+train_idx, test_idx = dataset_indices[test_split_index:], dataset_indices[:test_split_index]
+train_sampler = SubsetRandomSampler(train_idx)
+test_sampler = SubsetRandomSampler(test_idx)
+train_dataloader = GraphDataLoader(dataset, shuffle=False, batch_size=100, sampler=train_sampler)
+test_dataloader = GraphDataLoader(dataset, shuffle=False, batch_size=100, sampler=test_sampler)
 
-    # new added
-    dataset_indices = list(range(num_examples))
-    np.random.shuffle(dataset_indices)
-    test_split_index = 67
-    train_idx, test_idx = dataset_indices[test_split_index:], dataset_indices[:test_split_index]
-    train_sampler = SubsetRandomSampler(train_idx)
-    test_sampler = SubsetRandomSampler(test_idx)
-    train_dataloader = GraphDataLoader(dataset, shuffle=False, batch_size=100, sampler=train_sampler)
-    test_dataloader = GraphDataLoader(dataset, shuffle=False, batch_size=100, sampler=test_sampler)
-
-    etypes = [('control', 'control', 'control'), ('control', 'call', 'control'), ('control', 'data', 'variable'), ('variable', 'data', 'control')]
-    # etypes = [('v_1', 'e', 'v_1')]
-    model = HeteroClassifier(120, 64, 2, etypes)
-    opt = torch.optim.Adam(model.parameters(), lr=0.01)
+etypes = [('control', 'control', 'control'), ('control', 'call', 'control'), ('control', 'data', 'variable'), ('variable', 'data', 'control')]
+# etypes = [('v_1', 'e', 'v_1')]
+model = HeteroClassifier(120, 64, 2, etypes)
+opt = torch.optim.Adam(model.parameters(), lr=0.01)
+total_loss = 0
+loss_list = []
+epoch_list = []
+for epoch in range(300):
     total_loss = 0
-    loss_list = []
-    epoch_list = []
-    for epoch in range(300):
-        total_loss = 0
-        for batched_graph, labels in train_dataloader:
-            logits = model(batched_graph)
-            flattened_labels = labels.flatten()
-            loss = F.cross_entropy(logits, flattened_labels)
-            total_loss += loss.item()
-            opt.zero_grad()
-            loss.backward()
-            opt.step()
-        loss_list.append(total_loss)
-        epoch_list.append(epoch)
+    for batched_graph, labels in train_dataloader:
+        logits = model(batched_graph)
+        flattened_labels = labels.flatten()
+        loss = F.cross_entropy(logits, flattened_labels)
+        total_loss += loss.item()
+        opt.zero_grad()
+        loss.backward()
+        opt.step()
+    loss_list.append(total_loss)
+    epoch_list.append(epoch)
 
 
-    num_correct = 0
-    num_tests = 0
-    total_pred = []
-    total_label = []
+num_correct = 0
+num_tests = 0
+total_pred = []
+total_label = []
 
-    for batched_graph, labels in test_dataloader:
-        pred = model(batched_graph)
-        num_correct += (pred.argmax(1) == labels).sum().item()
-        num_tests += len(labels)
+for batched_graph, labels in test_dataloader:
+    pred = model(batched_graph)
+    num_correct += (pred.argmax(1) == labels).sum().item()
+    num_tests += len(labels)
 
-        output = (torch.max(torch.exp(pred), 1)[1]).data.cpu().numpy()
-        total_pred.extend(output)
+    output = (torch.max(torch.exp(pred), 1)[1]).data.cpu().numpy()
+    total_pred.extend(output)
 
-        label_tmp = labels.data.cpu().numpy()
-        total_label.extend(label_tmp)
+    label_tmp = labels.data.cpu().numpy()
+    total_label.extend(label_tmp)
 
-    # starts here
+# starts here
 
 
 
 
-    # constant for classes
-    classes = ('CPU', 'GPU')
-    class_names = ['CPU', 'GPU']
+# constant for classes
+classes = ('CPU', 'GPU')
+class_names = ['CPU', 'GPU']
 
-    print('Report ', whole_exp)
-    print('PG+')
-    print(classification_report(total_label, total_pred, target_names=class_names))
+print('Report ', whole_exp)
+print('PG+')
+print(classification_report(total_label, total_pred, target_names=class_names))
 
-    # Build confusion matrix
-    cf_matrix = confusion_matrix(total_label, total_pred)
-    # ends here
+# Build confusion matrix
+cf_matrix = confusion_matrix(total_label, total_pred)
+# ends here
 
-    print(cf_matrix)
+print(cf_matrix)
     # plt.plot(epoch_list, loss_list)  # Plot the chart
     # plt.show()  # display
     # train_dataloader_pg = GraphDataLoader(dataset_pg, shuffle=False, batch_size=100, sampler=train_sampler)
