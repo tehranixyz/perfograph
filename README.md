@@ -3,6 +3,8 @@ Code and package for perfograph as laid out in the paper ["PERFOGRAPH: A Numeric
 
 This repository is designed to create graph representations of source code that are numerically aware, contain composite data structure information, and properly present variables.
 
+![Sample Graph](examples/sample_graph.png)
+
 ## Graph Format
 | Node Type Name | Node Type ID | Shape           | Color     | Rounded | 
 |----------------|--------------|-----------------|-----------|---------|
@@ -20,7 +22,6 @@ This repository is designed to create graph representations of source code that 
 | Data           | 1            | Red   |
 | Call           | 2            | Green |
 
-![Sample Graph](examples/sample_graph.pdf)
 
 ## System Requirements
 This project requires Graphviz to be installed:
@@ -54,7 +55,7 @@ pip install perfograph
 - Parallelism Discovery
 
 ## Usage
-After installing perfograph and the necessary dependencies, you can use perfograph as shown below:
+After installing perfograph and the necessary dependencies, you can use perfograph as shown below or in the examples folder:
 
 ### Creating a Graph
 To create a graph representation of a program, use the 'from_file' function.
@@ -77,6 +78,7 @@ import perfograph as pg
 
 pg.to_dot(G, 'output.dot') # Saves the graph as a DOT file
 pg.to_dot(G, 'output.pdf') # Saves a PDF vizualization of the graph
+pg.to_dot(G, 'output.png') # Saves a PNG vizualization of the graph
 ```
 to_json
 Exports the graph in JSON format. If no file name is provided, returns the JSON object.

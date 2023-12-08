@@ -33,10 +33,7 @@ def from_file(file: str, llvm_version: str = '10', with_vectors=True, disable_pr
     return Perfograph(file, llvm_version, with_vectors, disable_progress_bar)
 
 def to_dot(G, file_name: str):
-    if file_name[-4:] == '.dot' or file_name[-4:] == '.pdf':
-        _visualize(G.graph_json, file_name)
-    else:
-        raise ValueError('Only DOT (*.dot) or PDF (*.pdf) files are accepted.')
+    _visualize(G.graph_json, file_name)
         
 def to_json(G, file_name: str= ''):
     if file_name[-5:] == '.json':
