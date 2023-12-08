@@ -20,6 +20,8 @@ This repository is designed to create graph representations of source code that 
 | Data           | 1            | Red   |
 | Call           | 2            | Green |
 
+![Sample Graph](examples/sample_graph.pdf)
+
 ## System Requirements
 This project requires Graphviz to be installed:
 

@@ -21,10 +21,8 @@ class Perfograph:
                     self.programl_graph = pg.from_llvm_ir(file_content_str, version=llvm_version)
                 elif file[-4:] == '.cpp':
                     self.programl_graph = pg.from_cpp(file_content_str)
-                elif file[-2:] == '.c':
-                    self.programl_graph = pg.from_c(file_content_str)
                 else:
-                    raise ValueError('Only LLVM IR (*.ll), CPP (*.cpp), or C (*.c) files are accepted.')
+                    raise ValueError('Only LLVM IR (*.ll) or CPP (*.cpp) files are accepted.')
         except Exception as e:
             print(e)
             traceback.print_exc()
