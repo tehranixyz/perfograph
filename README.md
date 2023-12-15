@@ -34,7 +34,6 @@ conda activate my_x86_env
 conda config --env --set subdir osx-64
 conda install python=3.8
 conda install graphviz
-pip install perfograph
 ```
 
 
