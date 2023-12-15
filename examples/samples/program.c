@@ -1,9 +1,6 @@
-//Converted to program.ll with `clang -S -emit-llvm program.c -o program.ll`
-
-#include <stdio.h>
-
 int main()
 {
-    printf("Hello World!\n");
+    int a[] = {1, 2, 3};
+    int sum = a[1] + a[2] + a[3];
     return 0;
 }
