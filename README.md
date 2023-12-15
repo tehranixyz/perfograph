@@ -33,7 +33,7 @@ conda create -n my_x86_env -y
 conda activate my_x86_env
 conda config --env --set subdir osx-64
 conda install python=3.8
-conda install graphviz
+conda install -c conda-forge pygraphviz
 ```
 
 
