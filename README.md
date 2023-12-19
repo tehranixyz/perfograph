@@ -117,6 +117,8 @@ The second dictionary contains the edges of the graph in the format {node_type}_
 
 The third dictionary contains atributes for the edges. This dictionary stores an array with the length of the number of edges of that respective type and stores a value of the position of the edge. This position represents the dependency of that edge. For example, for an edge from A to B with position 0 and another edge C to B with position 1, the edge with position 0 would need to execute before the edge with position 1.
 
+If any of the entries are empty, it means that there are nodes/edges of that particular type.
+
 ## Error Handling
 The module raises 'ValueError' if an unsupported file format is provided or if an invalid output file type is specified.
 
