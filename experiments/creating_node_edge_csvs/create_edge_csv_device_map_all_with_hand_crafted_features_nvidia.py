@@ -340,10 +340,10 @@ i = 0
 
 for graph in graphs:
     graph_string = ""
-    if (i < 286):
+    if (i < 395):
         # feature_string = graph[4].get('hand_crafted_features')
         graph_string = str(i) + "," + "0" + "\n"
-    elif (i >= 286):
+    elif (i >= 395):
         # feature_string = graph[4].get('hand_crafted_features')
         graph_string = str(i) + "," + "1" + "\n"
     graph_file.writelines(graph_string)
