@@ -80,10 +80,10 @@ Parameters:
 | Instruction    | 0            | Rectangle       | Blue      |    No   |
 | Variable       | 1            | Ellipse         | Light Red |   Yes   |
 | Constant       | 2            | Diamond         | Red       |    No   |
-| Variable Array | 3            | Hexagon         | Red       |    No   |
-| Variable Vector| 4            | Octagon         | Red       |    No   |
-| Constant Array | 5            | Rounded Box     | Light Red |   Yes   |
-| Constant Vector| 6            | Parallelogram   | Light Red |    No   |
+| Variable Array | 3            | Hexagon         | Light Red |    No   |
+| Variable Vector| 4            | Octagon         | Light Red |    No   |
+| Constant Array | 5            | Rounded Box     | Red       |   Yes   |
+| Constant Vector| 6            | Parallelogram   | Red       |    No   |
 
 | Edge Type Name | Edge Type ID | Color |
 |----------------|--------------|-------|
