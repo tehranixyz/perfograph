@@ -78,8 +78,8 @@ Parameters:
 | Node Type Name | Node Type ID | Shape           | Color     | Rounded | 
 |----------------|--------------|-----------------|-----------|---------|
 | Instruction    | 0            | Rectangle       | Blue      |    No   |
-| Variable       | 1            | Ellipse         | Red       |   Yes   |
-| Constant       | 2            | Diamond         | Light Red |    No   |
+| Variable       | 1            | Ellipse         | Light Red |   Yes   |
+| Constant       | 2            | Diamond         | Red       |    No   |
 | Variable Array | 3            | Hexagon         | Red       |    No   |
 | Variable Vector| 4            | Octagon         | Red       |    No   |
 | Constant Array | 5            | Rounded Box     | Light Red |   Yes   |
