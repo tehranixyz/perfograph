@@ -208,7 +208,7 @@ def get_hetero_graph(file: str, source_file_path: str, label_count: int,  llvm_v
 # feature file read starts here
 
 feat_count = 0
-feature_file = open("../FeatureMap/feature_map_file_pg_plus_text_all_dev_map_with_nvidia.txt", 'r')
+feature_file = open("./feature_map_file_pg_plus_text_all_dev_map_with_nvidia.txt", 'r')
 feature_lines = feature_file.readlines()
 feature_map = {}
 for feature_line in feature_lines:
@@ -234,7 +234,7 @@ def find_subdirectories(directory):
 
 # Usage example
 label_count = 0
-directory_paths = ["/Users/quaziishtiaquemahmud/Desktop/Start/RA/Darmstadt/Simd-Target-Combined/SIMD-Target-Combined/CPU/", "/Users/quaziishtiaquemahmud/Desktop/Start/RA/Darmstadt/Simd-Target-Combined/SIMD-Target-Combined/GPU/"]  # Replace with your directory path
+directory_paths = ["./CPU/", "./GPU/"]  # Replace with your directory path
 
 graph_list = []
 graph_count = 0
@@ -253,4 +253,4 @@ for directory in tqdm(directory_paths):
                 graph_count += 1
     label_count += 1
 print(graph_count)
-torch.save(graph_list, './project_darmstadt_graph_list_simd_target_combined_base_perfograph.pt')
+torch.save(graph_list, './perfographs.pt')
