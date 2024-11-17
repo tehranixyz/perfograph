@@ -190,6 +190,10 @@ def get_hetero_graph(file: str, source_file_path: str, label_count: int,  llvm_v
         'label': label_count
     }
 
+    hand_crafted_attribute = {
+        'hand_crafted_features': "0,0,0,0,0,0,0,0,"
+    }
+
     for edge in graph_json.get('links'):
         flow_type = edge_type[edge.get('flow')]
         edge_pos = edge.get('position')
