@@ -239,7 +239,6 @@ directory_paths = ["/CPU/", "/GPU/"]  # Replace with your directory path
 graph_list = []
 graph_count = 0
 
-
 for directory in tqdm(directory_paths):
     sub_directories = find_subdirectories(directory)
     for sub_directory in sub_directories:
